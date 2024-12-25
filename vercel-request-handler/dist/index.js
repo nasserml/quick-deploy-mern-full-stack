@@ -16,6 +16,7 @@ const express_1 = __importDefault(require("express"));
 const app_1 = require("firebase/app");
 const storage_1 = require("firebase/storage");
 require("dotenv/config");
+const cors_1 = __importDefault(require("cors"));
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_AUTH_DOMAIN,
@@ -29,6 +30,7 @@ const firebaseConfig = {
 const app1 = (0, app_1.initializeApp)(firebaseConfig);
 const storage = (0, storage_1.getStorage)(app1);
 const app = (0, express_1.default)();
+app.use((0, cors_1.default)());
 app.get("/*", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const host = req.hostname;
     console.log(host);
